@@ -11,12 +11,7 @@ const CallStatus = Object.freeze({
     ACTIVE: 'ACTIVE',
     FINISHED: 'FINISHED'
 });  
-/* 
-    interface SavedMessage{
-        role: 'user' | 'system' | 'assistant';
-        content:string;
-    }
-*/
+
 const Agent = ({userName, userId, type}) =>{
     const router = useRouter();
     const [isSpeaking, setIsSpeaking] = useState(false);
@@ -43,7 +38,7 @@ const Agent = ({userName, userId, type}) =>{
         vapi.on('call-end', onCallEnd);
         vapi.on('message', onMessage);
         vapi.on('speech-start', onSpeechStart);
-        vapi.on('call-end', onSpeechEnd);
+        vapi.on('speech-end', onSpeechEnd);
         vapi.on('error', onError);
 
         return ()=>{
@@ -51,7 +46,7 @@ const Agent = ({userName, userId, type}) =>{
             vapi.off('call-end', onCallEnd);
             vapi.off('message', onMessage);
             vapi.off('speech-start', onSpeechStart);
-            vapi.off('call-end', onSpeechEnd);
+            vapi.off('speech-end', onSpeechEnd);
             vapi.off('error', onError);
         }
     }, [])
