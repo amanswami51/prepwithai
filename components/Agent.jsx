@@ -1,5 +1,6 @@
 'use client';
 import { interviewer } from '@/constants';
+import { createFeedback } from '@/lib/config/server_actions';
 import { cn } from '@/lib/utils';
 import { vapi } from '@/lib/vapi.sdk';
 import Image from 'next/image'
@@ -54,10 +55,9 @@ const Agent = ({userName, userId, type, interviewId, questions}) =>{
 
     const handleGenerateFeedback = async(messages)=>{
         console.log("generate feedback here.");
-        const {success, id} = {
-            success:true,
-            id:'feedback-id'
-        }
+        const {success, id} = await createFeedback({
+            interviewId, userId, transcript:messages
+        })
         if(success && id){
             router.push(`/interview/${interviewId}/feedback`);
         }else{

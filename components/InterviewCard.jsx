@@ -5,15 +5,11 @@ import { getRandomInterviewCover } from '@/lib/utils';
 import { Button } from './ui/button';
 import Link from 'next/link';
 import DisplayTechIcons from '@/components/DisplayTechIcons';
+import { getFeedbackByInterviewId } from '@/lib/config/server_actions';
 
-const InterviewCard = ({_id, userId, role, type, techstack, createdAt}) => {
+const InterviewCard = async({_id, userId, role, type, techstack, createdAt}) => {
     const formattedDate = dayjs(createdAt || Date.now()).format('MMM D, YYYY');
-    // const feedback={
-    //     totalScore:80,
-    //     finalAssessment:"Well done your skills in this interview is perfect"
-    // }
-    const feedback=null;
-
+    const feedback = userId && _id ? await getFeedbackByInterviewId({userId, interviewId:_id}):null;
   return(
     <div className='card-border w-[360px] max-sm:w-full min-h-96'>
       <div className="card-interview">
