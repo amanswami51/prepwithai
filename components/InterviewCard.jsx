@@ -6,12 +6,13 @@ import { Button } from './ui/button';
 import Link from 'next/link';
 import DisplayTechIcons from '@/components/DisplayTechIcons';
 
-const InterviewCard = ({interviewId, userId, role, type, techstack, createdAt}) => {
+const InterviewCard = ({_id, userId, role, type, techstack, createdAt}) => {
     const formattedDate = dayjs(createdAt || Date.now()).format('MMM D, YYYY');
-    const feedback={
-        totalScore:80,
-        finalAssessment:"Well done your skills in this interview is perfect"
-    }
+    // const feedback={
+    //     totalScore:80,
+    //     finalAssessment:"Well done your skills in this interview is perfect"
+    // }
+    const feedback=null;
 
   return(
     <div className='card-border w-[360px] max-sm:w-full min-h-96'>
@@ -31,17 +32,17 @@ const InterviewCard = ({interviewId, userId, role, type, techstack, createdAt}) 
                 </div>
                 <div className="flex flex-row gap-2 items-center">
                     <Image src='/star.svg' alt='star' width={22} height={22} />
-                    <p>{feedback.totalScore || '---'}/100</p>
+                    <p>{feedback?.totalScore || '---'}/100</p>
                 </div>
             </div>
             <p className="line-clamp-2 mt-5">
-                {feedback.finalAssessment || "You haven't taken the interview yet. Take it now to improve your skill."}
+                {feedback?.finalAssessment || "You haven't taken the interview yet. Take it now to improve your skill."}
             </p>
         </div>
         <div className="flex flex-row justify-between">
             <DisplayTechIcons techStack={techstack}/>
             <Button className="btn-primary">
-                <Link href={feedback?`/interview/${interviewId}/feedback`:`/interview/${interviewId}`}>
+                <Link href={feedback?`/interview/${_id}/feedback`:`/interview/${_id}`}>
                     {feedback?'Check Feedback':'view Interview'}
                 </Link>
             </Button>
