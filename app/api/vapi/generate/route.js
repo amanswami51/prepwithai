@@ -8,15 +8,6 @@ export async function GET(){
     return Response.json({success:true, data:'Thank You!'}, {status:200});
 }
 
-// {
-//     "type":"Technical",
-//     "role": "Frontend Developer",
-//     "level": "Junior",
-//     "techstack": "React,TypeScript,Next.js,Tailwind CSS",
-//     "amount":8,
-//     "userid": "user1"
-// }
-
 export async function POST(request){
     const {type, role, level, techstack, amount, userid} = await request.json();
     try {

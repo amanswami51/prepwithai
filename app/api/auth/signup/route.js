@@ -7,7 +7,7 @@ import bcrypt from "bcryptjs";
 export async function POST(request){
     try {
         await connectMongoDb();
-        const { name, email, password } = await request.json();
+        const { name, email, password, image } = await request.json();
 
         //find the user if already exists
         let user = await User.findOne({email});
@@ -23,7 +23,8 @@ export async function POST(request){
         await User.create({
             name,
             email,
-            password:securePassword
+            password:securePassword,
+            image
         })
         return NextResponse.json({success:true})    
     } 

@@ -27,7 +27,7 @@ const page = async({params}) => {
             </p>
         </div>
 
-        <Agent userName={user?.name} userId={user?._id.toString()} type="interview" interviewId={id} questions={interview.questions}/>
+        <Agent userName={user?.name} userId={user?._id.toString()} type="interview" interviewId={id} questions={interview.questions} userPic={user?.image}/>
     </>
   )
 }

@@ -27,7 +27,7 @@ const page = async() =>{
             <Link href='/interview'>Start an Interview</Link>
           </Button>
         </div>
-        <Image src='/robot.png' alt='robot image' width={400} height={400} className="max-sm:hidden" />
+        <Image src='/robot_pic.png' alt='robot image' width={400} height={400} className="max-sm:hidden" />
       </section>
 
       <section className="flex flex-col gap-6 mt-8">
@@ -49,7 +49,7 @@ const page = async() =>{
           { 
             hasUpcomingInterviews ? (
               latestInterviews.map((interview)=>(
-                <InterviewCard {...interview} key={interview._id}/>
+                <InterviewCard {...interview} userId={user?._id.toString()} key={interview._id}/>
               ))
             ) : (<p>There are no new interviews available</p>)
           }
